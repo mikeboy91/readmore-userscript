@@ -116,4 +116,32 @@ function Miscellaneous($, _content) {
                 window.scrollTo(0, _content.get('forumPosts').last().offset().top - 100);
             });
     }
+
+    this.showHoverInformation = function () {
+        $('#headlines_list .block').each(function () {
+            var e = $(this);
+            e.hover(function () {
+                $.ajax({
+                    url: e.attr('href'),
+                    type: 'GET',
+                    success: function (data) {
+                        e.attr('title', $(data).find('.breadcrumbs').find('li').eq(2).text());
+                    }
+                });
+            }, function () {});
+        });
+
+        $('#forums_list ul li').each(function () {
+            var e = $(this);
+            e.hover(function () {
+                $.ajax({
+                    url: e.find('a').eq(2).attr('href'),
+                    type: 'GET',
+                    success: function (data) {
+                        e.attr('title', $(data).find('h1').text());
+                    }
+                });
+            });
+        });
+    }
 }

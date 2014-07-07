@@ -16,6 +16,8 @@ function ReadmoreUserscript($) {
             _misc.makeContentWider();
         }
 
+        _misc.showHoverInformation();
+
         // Optionen einfügen
         _options.insertOptions();
 
